@@ -1,0 +1,62 @@
+{% extends "layout-manager.twig" %}
+
+{% block body_content %}
+<div id="wrap-container">
+    <div id="page-clients">
+
+        {% if type == 'actualite' %}
+            <h1>Actualités</h1>      
+        {% endif %}    
+
+        <div id="barre-outils">
+            <div id="barre-outils-actions">
+                <a href="{{ WEB_URL }}/manager/posts-{{ type }}/ajouter-un-post?page={{ page }}&amp;tri={{ tri }}&amp;ordre={{ tri_ordre }}"><i class="fa fa-fw fa-plus" style="color: #ffffff;"></i>Ajouter</a>
+            </div>
+        </div>
+
+        <section>
+            <div class="section-container">
+                <h2>Liste &nbsp;({{ posts|length }})</h2>
+
+                <table>
+                    <tbody>
+                        <tr>
+                            <th>ID <span class="tri"><a href="{{ WEB_URL }}/manager/posts-{{ type }}?page={{ page }}&amp;tri=id&amp;ordre=desc"{% if tri == 'id' and tri_ordre == 'desc' %} class="actif"{% endif %}><i class="fa fa-fw fa-caret-up"></i></a><a href="{{ WEB_URL }}/manager/posts-{{ type }}?page={{ page }}&amp;tri=id&amp;ordre=asc"{% if tri == 'id' and tri_ordre == 'asc' %} class="actif"{% endif %}><i class="fa fa-fw fa-caret-down"></i></a></span></th>
+                            <th>Date <span class="tri"><a href="{{ WEB_URL }}/manager/posts-{{ type }}?page={{ page }}&amp;tri=date&amp;ordre=desc"{% if tri == 'date' and tri_ordre == 'desc' %} class="actif"{% endif %}><i class="fa fa-fw fa-caret-up"></i></a><a href="{{ WEB_URL }}/manager/posts-{{ type }}?page={{ page }}&amp;tri=date&amp;ordre=asc"{% if tri == 'date' and tri_ordre == 'asc' %} class="actif"{% endif %}><i class="fa fa-fw fa-caret-down"></i></a></span></th>
+                            <th>Titre <span class="tri"><a href="{{ WEB_URL }}/manager/posts-{{ type }}?page={{ page }}&amp;tri=titre&amp;ordre=desc"{% if tri == 'titre' and tri_ordre == 'desc' %} class="actif"{% endif %}><i class="fa fa-fw fa-caret-up"></i></a><a href="{{ WEB_URL }}/manager/posts-{{ type }}?page={{ page }}&amp;tri=titre&amp;ordre=asc"{% if tri == 'titre' and tri_ordre == 'asc' %} class="actif"{% endif %}><i class="fa fa-fw fa-caret-down"></i></a></span></th>
+                            <th>Ordre <span class="tri"><a href="{{ WEB_URL }}/manager/posts-{{ type }}?page={{ page }}&amp;tri=ordre&amp;ordre=desc"{% if tri == 'ordre' and tri_ordre == 'desc' %} class="actif"{% endif %}><i class="fa fa-fw fa-caret-up"></i></a><a href="{{ WEB_URL }}/manager/posts-{{ type }}?page={{ page }}&amp;tri=ordre&amp;ordre=asc"{% if tri == 'ordre' and tri_ordre == 'asc' %} class="actif"{% endif %}><i class="fa fa-fw fa-caret-down"></i></a></span></th>
+                            <th>Actif <span class="tri"><a href="{{ WEB_URL }}/manager/posts-{{ type }}?page={{ page }}&amp;tri=actif&amp;ordre=desc"{% if tri == 'actif' and tri_ordre == 'desc' %} class="actif"{% endif %}><i class="fa fa-fw fa-caret-up"></i></a><a href="{{ WEB_URL }}/manager/posts-{{ type }}?page={{ page }}&amp;tri=actif&amp;ordre=asc"{% if tri == 'actif' and tri_ordre == 'asc' %} class="actif"{% endif %}><i class="fa fa-fw fa-caret-down"></i></a></span></th>                                                                                                                 
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        {% for post in posts %}
+                        <tr>
+                            <td class="center">{{ post.id }}</td>
+                            <td>{{ post.date|date_format() }}</td>
+                            <td>{{ post.titre }}</td>
+                            <td class="center">{{ post.ordre }}</td>
+                            <td class="center">{% if post.actif %}<i class="fa fa-fw fa-check" style="color: #00c921;"></i>{% else %}<i class="fa fa-fw fa-times" style="color: #ff0000;"></i>{% endif %}</td>
+                            <td class="center"><a href="{{ WEB_URL }}/manager/posts-{{ type }}/dupliquer-un-post/{{ post.id }}?page={{ page }}&amp;tri={{ tri }}&amp;ordre={{ tri_ordre }}" title="Dupliquer"><i class="fa fa-fw fa-clone"></i></a></td>
+                            <td class="center"><a href="{{ WEB_URL }}/manager/posts-{{ type }}/modifier-un-post/{{ post.id }}?page={{ page }}&amp;tri={{ tri }}&amp;ordre={{ tri_ordre }}" title="Modifier"><i class="fa fa-fw fa-edit"></i></a></td>
+                            <td class="center"><a href="{{ WEB_URL }}/manager/posts-{{ type }}/supprimer-un-post/{{ post.id }}?page={{ page }}&amp;tri={{ tri }}&amp;ordre={{ tri_ordre }}" title="Supprimer" onclick="return confirm('Voulez-vous vraiment supprimer ?');"><i class="fa fa-fw fa-trash-alt"></i></a></td>
+                        </tr>
+                        {% endfor %}           
+                    </tbody>                       
+                </table>
+            </div>
+        </section>
+
+        <div id="pagination">
+            {% for i in range(debut_pagination, fin_pagination) %}
+                {% if i == page %}
+                    <a href="{{ WEB_URL }}/manager/posts-{{ type }}?page={{ i }}&amp;tri={{ tri }}&amp;ordre={{ tri_ordre }}" class="actif">{{ i }}</a>   
+                {% else %}
+                    <a href="{{ WEB_URL }}/manager/posts-{{ type }}?page={{ i }}&amp;tri={{ tri }}&amp;ordre={{ tri_ordre }}">{{ i }}</a>   
+                {% endif %}                
+            {% endfor %}   
+        </div>
+
+    </div>
+</div>
+{% endblock %}

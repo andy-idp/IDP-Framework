@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="{{ CURRENT_LANGUAGE }}" prefix="og: http://ogp.me/ns#">
+
+    <head>
+        {% if GOOGLE_ANALYTICS is not empty %}            
+            <!-- Global site tag (gtag.js) - Google Analytics -->
+            <script async src="https://www.googletagmanager.com/gtag/js?id={{ GOOGLE_ANALYTICS }}"></script>
+            <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+
+                gtag('config', '{{ GOOGLE_ANALYTICS }}');
+            </script>
+        {% endif %}
+
+        <meta charset="utf-8" />
+        <title>{% block meta_title %}{{ TITLE|title }}{% endblock %}</title> 
+
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui" />
+        <meta name="description" content="{% block meta_description %}{% endblock %}" />       
+        
+        <!-- Add to homescreen for Chrome on Android -->
+        <meta name="mobile-web-app-capable" content="yes" />       
+
+        <!--[if IE]>
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <![endif]-->
+        
+        <meta property="og:title" content="{{ block('meta_title') }}" />
+        <meta property="og:description" content="{{ block('meta_description') }}" />
+        <meta property="og:type" content="website" />        
+
+        <!-- Generic Icon -->
+        <link rel="shortcut icon" href="{{ WEB_DIR_URL }}/images/favicon.ico" />
+
+        <!-- Css -->
+        {% block css_files %}
+            <link rel="stylesheet" href="{{ WEB_DIR_URL }}/css/style.css?v={{ VERSION }}" media="all" />
+        {% endblock %}
+
+    </head>
+
+    <body>     
+        {% if GOOGLE_ANALYTICS_OLD is not empty %}            
+            <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+            <script>
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+              
+                ga('create', '{{ GOOGLE_ANALYTICS_OLD }}', 'auto');
+                ga('send', 'pageview');             
+              </script>
+        {% endif %}
+
+        <div id="message-top">
+            <div{% if messages_top.error is not empty %} class="error"{% elseif messages_top.report is not empty %} class="report"{% endif %}>
+                {% if messages_top.error is not empty %}
+                    {% for message in messages_top.error %}
+                        {% autoescape false %}   
+                            {{ message }}     
+                        {% endautoescape %} 
+                    {% endfor %}
+                {% elseif messages_top.report is not empty %}
+                {% for message in messages_top.report %}
+                    {% autoescape false %}   
+                        {{ message }}     
+                    {% endautoescape %}  
+                {% endfor %}
+                {% endif %}
+            </div>     
+        </div>
+        
+        {% block body_content %}{% endblock %}
+
+        <div id="cookie-notice">
+            <div id="cookie-notice-container">
+                <span>
+                    {{ "cookie_notice"|translate }}
+                    <a href="{{ WEB_URL }}/{{ "page_mentions_legales_url"|translate }}">{{ "cookie_notice_page"|translate }}</a>
+                </span>
+                <span>
+                    <a href="#" id="cookie-notice-close"><i class="fas fa-times"></i>{{ "cookie_notice_close"|translate }}</a>                     
+                </span>
+            </div>
+        </div>
+
+        <!-- Js -->        
+        {% block javascript_files %}
+            <script type="text/javascript" src="{{ WEB_DIR_URL }}/javascript/idp_module.js?v={{ VERSION }}"></script>  
+            <script type="text/javascript" src="{{ WEB_DIR_URL }}/javascript/main.js?v={{ VERSION }}"></script> 
+            <script type="text/javascript" defer src="{{ WEB_DIR_URL }}/javascript/fontawesome-all.min.js"></script>  
+        {% endblock %}                          
+
+    </body>
+</html>

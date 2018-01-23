@@ -1,0 +1,74 @@
+{% macro input(label, type, name, value, id, class) %}
+<p>
+    <span>
+        <label{% if id %} for="{{ id }}"{% endif %}>{{ label }}</label>
+        <input type="{{ type|default('text') }}" name="{{ name }}" value="{{ value|e }}"{% if id %} id="{{ id }}"{% endif %}{% if class %} class="{{ class }}"{% endif %} />
+    </span>
+</p>
+{% endmacro %}
+
+{% macro textarea(label, name, value, id, class) %}
+<p>
+    <span>
+        <label{% if id %} for="{{ id }}"{% endif %}>{{ label }}</label>
+        <textarea name="{{ name }}"{% if id %} id="{{ id }}"{% endif %}{% if class %} class="{{ class }}"{% endif %}>{{ value|e }}</textarea>
+    </span>
+</p>
+{% endmacro %}
+
+{% macro checkbox(label, name, checked, id, class) %}
+<p>
+    <span>
+        <input type="checkbox" name="{{ name }}" value="1"{% if checked %} checked="checked"{% endif %}{% if id %} id="{{ id }}"{% endif %}{% if class %} class="{{ class }}"{% endif %} />
+        <label{% if id %} for="{{ id }}"{% endif %}>{{ label }}</label>        
+    </span>
+</p>
+{% endmacro %}
+
+{% macro select(label, name, values, value, id, class) %}
+<p>
+    <span>
+        <label{% if id %} for="{{ id }}"{% endif %}>{{ label }}</label>
+        <select name="{{ name }}"{% if id %} id="{{ id }}"{% endif %}{% if class %} class="{{ class }}"{% endif %}>
+            {% for key, option in values %}
+                <option value="{{ key }}"{% if value == key %} selected="selected"{% endif %}>{{ option }}</option>
+            {% endfor %}
+        </select>
+    </span>
+</p>
+{% endmacro %}
+
+{% macro radio(label, name, values, value, id, class) %}
+<p>
+    {% if label %}
+    <label>{{ label }}</label>
+    {% endif %}
+    {% for key, label in values %}
+        <input type="radio" name="{{ name }}" value="{{ key }}"{% if value == key %} checked="checked"{% endif %}{% if id %} id="{{ id ~ '-' ~ loop.index }}"{% endif %} /> <label{% if id %} for="{{ id ~ '-' ~ loop.index }}"{% endif %}>{{ label }}</label>
+    {% endfor %}
+</p>
+{% endmacro %}
+
+{% macro submit(label, id, class, chps_obligatoires) %}
+<div class="submit-form">
+    {% if chps_obligatoires %}
+    <div class="submit-form-chps-obligatoires">
+        * Champs obligatoires
+    </div>
+    {% endif %}
+    <span>
+        <input type="submit" value="{{ label }}"{% if id %} id="{{ id }}"{% endif %}{% if class %} class="{{ class }}"{% endif %} />        
+    </span>
+</div>
+{% endmacro %}
+
+{% macro captcha(langue) %}
+<div class="captcha">
+    {% if langue %}
+    <script src='https://www.google.com/recaptcha/api.js?hl={{ langue }}'></script>
+    {% else %}
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    {% endif %}
+    <div class="g-recaptcha" data-sitekey="{{ RECAPTCHA_PUBLIC_KEY }}"></div>
+</div>
+{% endmacro %}

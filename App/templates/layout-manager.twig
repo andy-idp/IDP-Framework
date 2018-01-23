@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="{{ CURRENT_LANGUAGE }}" prefix="og: http://ogp.me/ns#">
+
+    <head>
+
+        <meta charset="utf-8" />
+        <meta name="robots" content="noindex,follow" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui" />
+        <!--[if IE]>
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <![endif]-->
+
+        <title>Manager</title> 
+
+        <!-- Add to homescreen for Chrome on Android -->
+        <meta name="mobile-web-app-capable" content="yes" />       
+
+        <!-- Generic Icon -->
+        <link rel="shortcut icon" href="{{ WEB_DIR_URL }}/images/favicon.ico" />
+
+        <!-- Css -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,300italic,400italic,600italic' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="{{ WEB_DIR_URL }}/css/manager.min.css" />
+        {% block css_files %}{% endblock %}
+
+    </head>
+
+    <body>     
+        <div id="message-top">
+            <div{% if messages_top.error is not empty %} class="error"{% elseif messages_top.report is not empty %} class="report"{% endif %}>
+                {% if messages_top.error is not empty %}
+                    {% for message in messages_top.error %}
+                        {% autoescape false %}  
+                            {% if loop.index0 != 0 %}<br />{% endif %} 
+                            {{ message }}     
+                        {% endautoescape %}
+                    {% endfor %}
+                {% elseif messages_top.report is not empty %}
+                {% for message in messages_top.report %}
+                    {% autoescape false %}   
+                        {% if loop.index0 != 0 %}<br />{% endif %} 
+                        {{ message }}     
+                    {% endautoescape %}   
+                {% endfor %}
+                {% endif %}
+            </div>     
+        </div>
+
+        {% if manager %}
+        <div id="navigation">
+            <div id="logo">
+                <a href="{{ WEB_URL }}/manager"><img src="{{ WEB_DIR_URL }}/images/manager/id-parallele.png" alt="ID Parallèle" /></a>
+                <span>Manager</span>
+            </div>         
+            
+            <div id="navigation-langues">
+                <label>Langue à administrer : </label>
+                <select name="administration_langue" onchange="window.location.href=this.value;">
+                    {% for language in LANGUAGES %}
+                        <option value="{{ WEB_DIR_URL }}/{{ language }}/manager"{% if CURRENT_LANGUAGE == language %} selected="selected"{% endif %}>{{ language }}</option>    
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div id="menu">
+                <ul>
+                    <li><a href="{{ WEB_URL }}/manager"{% if current_menu and current_menu == 1 %} class="actif"{% endif %}><i class="fas fa-tachometer-alt fa-fw"></i>Tableau de bord</a></li>
+                    <li class="separateur"></li>
+                    <li><a href="{{ WEB_URL }}/manager/clients"{% if current_menu and current_menu == 2 %} class="actif"{% endif %}><i class="fas fa-users fa-fw"></i>Clients</a></li>                        
+                    <li class="separateur"></li>
+                    <li><a href="{{ WEB_URL }}/manager/posts-actualite"{% if current_menu and current_menu == 3 %} class="actif"{% endif %}><i class="fas fa-newspaper fa-fw"></i>Actualités</a></li>                                                
+                    <li class="separateur"></li>
+                    <li><a href="{{ WEB_URL }}/manager/managers"{% if current_menu and current_menu == 4 %} class="actif"{% endif %}><i class="fas fa-user-secret fa-fw"></i>Manager</a></li>                        
+                    <li><a href="{{ WEB_URL }}/manager/logs-manager"{% if current_menu and current_menu == 5 %} class="actif"{% endif %}><i class="fas fa-exclamation fa-fw"></i>Logs Manager</a></li>
+                    <li class="separateur"></li>
+                    <li><a href="{{ WEB_URL }}/manager/vider-le-cache"><i class="fas fa-trash fa-fw"></i>Vider le cache</a></li>
+                    <li class="separateur"></li>
+                    <li><a href="{{ WEB_URL }}/manager/deconnexion"><i class="fas fa-sign-out-alt fa-fw"></i>Déconnexion</a></li>
+                </ul>
+            </div>    
+        </div>            
+        {% endif %}
+        
+        <div id='wrapper'>
+            {% block body_content %}{% endblock %}
+        </div>
+
+        <footer {% if footer_connexion %} id="footer-connexion"{% endif %}>            
+            <div>
+                &copy; <a href="http://www.id-parallele.com" target="_blank">ID Parallèle</a> - Une question ? <a href="mailto:contact@id-parallele.com">Contactez-nous</a>
+            </div>
+            
+            <div id="footer-social">
+                <a href="https://www.facebook.com/Agence.IDParallele?ref=hl" target="_blank"><i class="fab fa-facebook fa-fw"></i></a>
+                <a href="https://twitter.com/idparallele" target="_blank"><i class="fab fa-twitter fa-fw"></i></a>
+                <a href="https://www.youtube.com/user/idparallele" target="_blank"><i class="fab fa-youtube fa-fw"></i></a>
+            </div>            
+        </footer>
+
+        <!-- Js -->                
+        {% block javascript_files %}{% endblock %}  
+        <script type="text/javascript" src="{{ WEB_DIR_URL }}/javascript/idp_module.min.js"></script> 
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script> 
+        <script src="https://npmcdn.com/flatpickr/dist/l10n/fr.js"></script>
+        <script type="text/javascript" src="{{ WEB_DIR_URL }}/javascript/manager.min.js"></script>    
+        <script type="text/javascript" defer src="{{ WEB_DIR_URL }}/javascript/fontawesome-all.min.js"></script>  
+    </body>
+</html>

@@ -1,0 +1,62 @@
+{% extends "layout-manager.twig" %}
+
+{% block body_content %}
+<div id="wrap-container">
+    <div id="page-clients">
+
+        <h1>Ajouter un manager</h1> 
+
+        <div id="barre-outils">
+            <div id="barre-outils-form">
+                <a href="{{ WEB_URL }}/manager/managers?page={{ page }}&amp;tri={{ tri }}&amp;ordre={{ tri_ordre }}"><i class="fa fa-fw fa-backward"></i>Retour à la liste des managers</a>
+            </div>
+        </div>
+
+        <form action="{{ WEB_URL }}/manager/managers/ajouter-un-manager?page={{ page }}&amp;tri={{ tri }}&amp;ordre={{ tri_ordre }}" method="post" autocomplete="off">
+            <section>
+                <div class="section-container">
+                    <h2>Informations sur le manager</h2>
+
+                    <p>
+                        <label for="nom">Nom *</label>
+                        <span>
+                            <input type="text" name="nom" tabindex="1" autocomplete="off" id="nom" value="{{ manager_u.nom }}" />
+                        </span>
+                    </p>
+                    <p>
+                        <label for="prenom">Prénom *</label>
+                        <span>
+                            <input type="text" name="prenom" tabindex="2" autocomplete="off" id="prenom" value="{{ manager_u.prenom }}" />
+                        </span>
+                    </p>
+                    <p>
+                        <label for="email">E-mail *</label>
+                        <span>
+                            <input type="text" name="email" tabindex="3" autocomplete="off" id="email" value="{{ manager_u.email }}" />
+                        </span>
+                    </p>
+                    <p>
+                        <label for="pass">Mot de passe *</label>
+                        <span>
+                            <input type="password" name="pass" tabindex="4" autocomplete="off" id="pass"/>
+                        </span>
+                    </p>     
+                    <p class="p-checkbox-radio">
+                        <input type="checkbox" value="1" tabindex="5" name="statut" id="statut"{% if manager_u.statut == 1 %} checked="checked"{% endif %} /> <label for="statut">Activer le compte</label>
+                    </p>
+                </div>
+            </section>
+
+            <p id="p-chps-obligatoires">
+                * Champs obligatoires
+            </p>
+            
+            <p id="p-submit">
+                <input type="submit" value="Valider" tabindex="6" />
+                <input type="hidden" name="token" value="{{ token }}" />
+            </p> 
+        </form>
+
+    </div>
+</div>
+{% endblock %}

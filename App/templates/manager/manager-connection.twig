@@ -1,0 +1,32 @@
+{% extends "layout-manager.twig" %}
+
+{% block body_content %}
+
+<div id="page-connexion">
+
+    <h1>Manager</h1>
+
+    <form action="{{ WEB_URL }}/manager/connexion" method="post" autocomplete="off">
+        <h2><img src="{{ WEB_DIR_URL }}/images/manager/id-parallele.png" alt="" /></h2>
+        <p>
+            <label for="email">E-mail</label>
+            <span>
+                <i class="fas fa-envelope fa-fw"></i>
+                <input type="text" name="email" tabindex="1" autocomplete="off" id="email" value="{{ email_value }}" />
+            </span>
+        </p>
+        <p>
+            <label for="pass">Mot de passe</label>
+            <span>
+                <i class="fas fa-key fa-fw"></i>
+                <input type="password" name="pass" tabindex="2" autocomplete="off" id="pass"/>
+            </span>
+        </p>
+        <p id="p-submit">
+            <input type="submit" value="Se connecter" tabindex="3" />
+            <input type="hidden" name="token" value="{{ token }}" />
+        </p>
+    </form>
+    
+</div>
+{% endblock %}

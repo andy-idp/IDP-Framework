@@ -1,0 +1,132 @@
+{% extends "layout-manager.twig" %}
+
+{% block body_content %}
+<script type="text/javascript" src="{{ WEB_DIR_URL }}/tinymce/tinymce.min.js"></script>
+<script type="text/javascript">
+    tinymce.init({
+        selector: "textarea",
+        plugins: "wordcount autolink link advlist lists fullscreen textcolor responsivefilemanager image contextmenu",
+        theme: "modern",
+        /*force_p_newlines : false,
+        forced_root_block : false,*/
+        toolbar: "responsivefilemanager image | undo redo | styleselect | bold italic underline | forecolor | alignleft aligncenter alignright alignjustify | link | bullist numlist outdent indent | fullscreen",
+        menubar : false,
+        statusbar : true,
+        resize: false,
+        language: 'fr_FR',
+        image_advtab: true,
+        external_filemanager_path:"/filemanager/",
+        filemanager_title:"Médias" ,
+        external_plugins: { "filemanager" : "/filemanager/plugin.min.js"},
+        relative_urls: false,
+        image_class_list: [
+            {title: 'None', value: ''},
+            {title: 'Image sur la gauche', value: 'left-image'},
+            {title: 'Image sur la droite', value: 'right-image'},
+            {title: 'Image centrée', value: 'center-image'}
+        ],
+        content_css: '/css/tiny-style.css',
+        style_formats: [
+            { title: 'Titre h1', block: 'h1' },
+            { title: 'Titre h2', block: 'h2' },
+            { title: 'Titre h3', block: 'h3' },
+            { title: 'Paragraphe', block: 'p' }
+        ]
+     });
+</script>
+
+<div id="wrap-container">
+    <div id="page-clients">
+
+        {% if type == 'actualite' %}
+            <h1>Ajouter une actualité</h1>      
+        {% endif %}         
+
+        <div id="barre-outils">
+            <div id="barre-outils-form">
+                <a href="{{ WEB_URL }}/manager/posts-{{ type }}?page={{ page }}&amp;tri={{ tri }}&amp;ordre={{ tri_ordre }}"><i class="fa fa-fw fa-backward"></i>Retour à la liste</a>
+            </div>
+        </div>
+
+        <form action="{{ WEB_URL }}/manager/posts-{{ type }}/ajouter-un-post?page={{ page }}&amp;tri={{ tri }}&amp;ordre={{ tri_ordre }}" method="post" autocomplete="off">
+            <section>
+                <div class="section-container">
+                    <p>
+                        <label for="date">Date *</label>
+                        <span>
+                            <input type="text" name="date" class="datepicker" tabindex="1" autocomplete="off" id="date" value="{{ post.date|date_format() }}" />
+                        </span>
+                    </p>
+                    <p>
+                        <label for="titre">Titre *</label>
+                        <span>
+                            <input type="text" name="titre" tabindex="2" autocomplete="off" id="titre" value="{{ post.titre }}" />
+                        </span>
+                    </p>
+                    <p>
+                        <label for="auteur">Auteur</label>
+                        <span>
+                            <input type="text" name="auteur" autocomplete="off" id="auteur" value="{{ options['auteur']}}" />
+                        </span>
+                    </p>
+                    <p>
+                        <label for="sous-titre">Sous titre</label>
+                        <span>
+                            <input type="text" name="sous_titre" tabindex="3" autocomplete="off" id="sous-titre" value="{{ post.sous_titre }}" />
+                        </span>
+                    </p>
+                    <p>
+                        <label for="texte">Texte *<br /><i>Un appui sur la touche "entrée" donnera un nouveau paragraphe. <br />Pour un simple saut de ligne, il faut maintenair "shift" et appuyer sur "entrée"<br /><br /><b>ATTENTION :</b> le copier/coller de texte n'est pas recommandé. Si vous souhaitez copier un contenu d'une source, copiez d'abord celle-ci dans un "document texte windows : .txt" (Pas de word) afin d'éviter tout problème de mise en page.</i></label>
+                        <span>
+                            <textarea id="texte" name="texte" tabindex="4" cols="5" rows="15">{{ post.texte }}</textarea>
+                        </span>
+                    </p>
+                    <p>
+                        <label for="ordre">Ordre</label>
+                        <span>
+                            <input type="text" name="ordre" tabindex="5" autocomplete="off" id="ordre" value="{{ post.ordre }}" />
+                        </span>
+                    </p>    
+                    <p class="p-checkbox-radio">
+                        <input type="checkbox" value="1" tabindex="6" name="actif" id="actif"{% if post.actif == 1 %} checked="checked"{% endif %} /> <label for="actif">Rendre visible</label>
+                    </p>
+                </div>
+            </section>
+
+            <p id="p-chps-obligatoires">
+                * Champs obligatoires
+            </p>
+
+            <p id="p-submit" style="margin-bottom: 25px;">
+                <input type="submit" value="Valider" tabindex="7" />
+                <input type="hidden" name="token" value="{{ token }}" />
+            </p> 
+        </form>
+
+        <section>
+            <div class="section-container">
+                <h2>Images</h2>
+                
+                <p>
+                    <i>
+                        Afin de pouvoir ajouter/supprimer des images merci d'enregistrer une première fois.
+                    </i>
+                </p>
+            </div>
+        </section>
+        
+        <section>
+            <div class="section-container">
+                <h2>Documents</h2>
+                
+                <p>
+                    <i>
+                        Afin de pouvoir ajouter/supprimer des documents merci d'enregistrer une première fois.
+                    </i>
+                </p>
+            </div>
+        </section>
+
+    </div>
+</div>
+{% endblock %}

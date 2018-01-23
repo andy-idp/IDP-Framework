@@ -1,0 +1,201 @@
+{% extends "layout-manager.twig" %}
+
+{% block javascript_files %}
+    <script type="text/javascript" src="{{ WEB_DIR_URL }}/javascript/html.sortable.js"></script>
+{% endblock %}
+
+{% block body_content %}
+<div id="loader-ordre">
+    <div>
+        Tri en cours ...
+    </div>
+</div>
+
+<script type="text/javascript" src="{{ WEB_DIR_URL }}/tinymce/tinymce.min.js"></script>
+<script type="text/javascript">
+    tinymce.init({
+        selector: "textarea",
+        plugins: "wordcount autolink link advlist lists fullscreen textcolor responsivefilemanager image contextmenu",
+        theme: "modern",
+        /*force_p_newlines : false,
+        forced_root_block : false,*/
+        toolbar: "responsivefilemanager image | undo redo | styleselect | bold italic underline | forecolor | alignleft aligncenter alignright alignjustify | link | bullist numlist outdent indent | fullscreen",
+        menubar : false,
+        statusbar : true,
+        resize: false,
+        language: 'fr_FR',
+        image_advtab: true,
+        external_filemanager_path:"/filemanager/",
+        filemanager_title:"Médias" ,
+        external_plugins: { "filemanager" : "/filemanager/plugin.min.js"},
+        relative_urls: false,
+        image_class_list: [
+            {title: 'None', value: ''},
+            {title: 'Image sur la gauche', value: 'left-image'},
+            {title: 'Image sur la droite', value: 'right-image'},
+            {title: 'Image centrée', value: 'center-image'}
+        ],
+        content_css: '/css/tiny-style.css',
+        style_formats: [
+            { title: 'Titre h1', block: 'h1' },
+            { title: 'Titre h2', block: 'h2' },
+            { title: 'Titre h3', block: 'h3' },
+            { title: 'Paragraphe', block: 'p' }
+        ]
+     });
+</script>
+
+<div id="wrap-container">
+    <div id="page-clients">
+
+        {% if type == 'actualite' %}
+            <h1>Modifier une actualité</h1>      
+        {% endif %}           
+
+        <div id="barre-outils">
+            <div id="barre-outils-form">
+                <a href="{{ WEB_URL }}/manager/posts-{{ type }}?page={{ page }}&amp;tri={{ tri }}&amp;ordre={{ tri_ordre }}"><i class="fa fa-fw fa-backward"></i>Retour à la liste</a>
+            </div>
+        </div>
+
+        <form action="{{ WEB_URL }}/manager/posts-{{ type }}/modifier-un-post/{{ post.id }}?page={{ page }}&amp;tri={{ tri }}&amp;ordre={{ tri_ordre }}" method="post" autocomplete="off">
+            <section>
+                <div class="section-container">
+                    <p>
+                        <label for="date">Date *</label>
+                        <span>
+                            <input type="text" name="date" class="datepicker" tabindex="1" autocomplete="off" id="date" value="{{ post.date|date_format() }}" />
+                        </span>
+                    </p>
+                    <p>
+                        <label for="titre">Titre *</label>
+                        <span>
+                            <input type="text" name="titre" tabindex="2" autocomplete="off" id="titre" value="{{ post.titre }}" />
+                        </span>
+                    </p>
+                    <p>
+                        <label for="auteur">Auteur</label>
+                        <span>
+                            <input type="text" name="auteur" autocomplete="off" id="auteur" value="{{ options['auteur']}}" />
+                        </span>
+                    </p>
+                    <p>
+                        <label for="sous-titre">Sous titre</label>
+                        <span>
+                            <input type="text" name="sous_titre" tabindex="3" autocomplete="off" id="sous-titre" value="{{ post.sous_titre }}" />
+                        </span>
+                    </p>
+                    <p>
+                        <label for="texte">Texte *<br /><i>Un appui sur la touche "entrée" donnera un nouveau paragraphe. <br />Pour un simple saut de ligne, il faut maintenair "shift" et appuyer sur "entrée"<br /><br /><b>ATTENTION :</b> le copier/coller de texte n'est pas recommandé. Si vous souhaitez copier un contenu d'une source, copiez d'abord celle-ci dans un "document texte windows : .txt" (Pas de word) afin d'éviter tout problème de mise en page.</i></label>
+                        <span>
+                            <textarea id="texte" name="texte" tabindex="4" cols="5" rows="15">{{ post.texte }}</textarea>
+                        </span>
+                    </p>
+                    <p>
+                        <label for="ordre">Ordre</label>
+                        <span>
+                            <input type="text" name="ordre" tabindex="5" autocomplete="off" id="ordre" value="{{ post.ordre }}" />
+                        </span>
+                    </p>    
+                    <p class="p-checkbox-radio">
+                        <input type="checkbox" value="1" tabindex="6" name="actif" id="actif"{% if post.actif == 1 %} checked="checked"{% endif %} /> <label for="actif">Rendre visible</label>
+                    </p>
+                </div>
+            </section>
+
+            <p id="p-chps-obligatoires">
+                * Champs obligatoires
+            </p>
+
+            <p id="p-submit" style="margin-bottom: 25px;">
+                <input type="submit" value="Valider" tabindex="6" />
+                <input type="hidden" name="token" value="{{ token }}" />
+                <input type="hidden" name="action" value="update" />
+            </p> 
+        </form>
+
+        <form action="{{ WEB_URL }}/manager/posts-{{ type }}/modifier-un-post/{{ post.id }}?page={{ page }}&amp;tri={{ tri }}&amp;ordre={{ tri_ordre }}" method="post" autocomplete="off" enctype="multipart/form-data">
+            <section>
+                <div class="section-container">
+                    <h2>Images</h2>
+
+                    <p>
+                        <label for="fichier">Image (jpg et 4Mo maximum)</label>
+                        <span>
+                            <input type="file" name="fichier" id="fichier" />
+                        </span>
+                    </p>
+                    <p>
+                        <label for="legende">Légende</label>
+                        <span>
+                            <input type="text" name="legende" autocomplete="off" id="legende" value="" />
+                        </span>
+                    </p>                    
+                    <p id="p-submit" style="margin-bottom: 25px;">
+                        <input type="submit" value="Envoyer l'image" />
+                        <input type="hidden" name="token" value="{{ token }}" />
+                        <input type="hidden" name="action" value="add_image" />
+                    </p> 
+
+                    <i>Pour modifier l'ordre des visuels, un simple glisser déposer suffit !<br /><br /></i>
+
+                    <div class="liste-doc">
+                        {% if post_images %}
+                            <ul class="sortable">
+                            {% for post_image in post_images %}
+                                <li data-id="{{ post_image.id }}">
+                                    <img src="{{ WEB_DIR_URL }}/downloads/posts/thumb-{{ post_image.fichier }}" alt="" />
+                                    <span>{{ post_image.legende }}</span>
+                                    <span class="liste-doc-delete"><a href="{{ WEB_URL }}/manager/posts-{{ type }}/supprimer-un-post-image/{{ post.id }}/{{ post_image.id }}?page={{ page }}&amp;tri={{ tri }}&amp;ordre={{ tri_ordre }}" title="Supprimer l'image" onclick="return confirm('Supprimer cette image ?');"><i class="fa fa-fw fa-trash-alt"></i></a></span>
+                                </li>
+                            {% endfor %}
+                            </ul>
+                        {% endif %}                                    
+                    </div>
+                </div>
+            </section>            
+        </form>
+
+        <form action="{{ WEB_URL }}/manager/posts-{{ type }}/modifier-un-post/{{ post.id }}?page={{ page }}&amp;tri={{ tri }}&amp;ordre={{ tri_ordre }}" method="post" autocomplete="off" enctype="multipart/form-data">
+            <section>
+                <div class="section-container">
+                    <h2>Documents</h2>
+
+                    <p>
+                        <label for="fichier">Pdf (pdf et 4Mo maximum)</label>
+                        <span>
+                            <input type="file" name="fichier" id="fichier" />
+                        </span>
+                    </p>
+                    <p>
+                        <label for="legende">Légende</label>
+                        <span>
+                            <input type="text" name="legende" autocomplete="off" id="legende" value="" />
+                        </span>
+                    </p>                    
+                    <p id="p-submit" style="margin-bottom: 25px;">
+                        <input type="submit" value="Envoyer le PDF" />
+                        <input type="hidden" name="token" value="{{ token }}" />
+                        <input type="hidden" name="action" value="add_document" />
+                    </p> 
+
+                    <div class="liste-doc">
+                        {% if post_documents %}
+                        <ul id="ul-doc">
+                        {% for post_document in post_documents %}
+                            <li>
+                                <span class="list-doc-ordre">{{ post_document.ordre }}</span>                                
+                                <span>{{ post_document.fichier }}</span>
+                                <span class="liste-doc-delete"><a href="{{ WEB_URL }}/manager/posts-{{ type }}/supprimer-un-post-document/{{ post.id }}/{{ post_document.id }}?page={{ page }}&amp;tri={{ tri }}&amp;ordre={{ tri_ordre }}" title="Supprimer le document" onclick="return confirm('Supprimer ce document ?');"><i class="fa fa-fw fa-trash-alt"></i></a></span>
+                            </li>
+                        {% endfor %}
+                        </ul>
+                    {% endif %}  
+                    </div>
+                </div>
+            </section>
+        </form>
+
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,119 @@
+/* Reset */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr,
+acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu,
+nav, output, ruby, section, summary, time, mark, audio, video { margin: 0; padding: 0; border: 0; vertical-align: baseline; outline: none; list-style-type: none; }
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block; }
+
+
+/* Message error/report */
+#message-top { position: fixed; width: 50%; top: -50px; left: 50%; z-index: 200; text-align: center; transform: translateX(-50%); -webkit-transform: translateX(-50%); visibility: hidden; opacity: 0; transition: all 0.3s ease-out; -webkit-transition: all 0.3s ease-out; }
+#message-top.show { visibility: visible; opacity: 1; top: -2px; }
+#message-top div { display: block; padding: 20px; background-color: #fff; font-size: 16px; }
+#message-top div.report { color: #4c8a3d; border: solid 2px #4c8a3d; }
+#message-top div.error{ color: #ff0000; border: solid 2px #ff0000; }
+
+/* Global */
+*, :after, :before { box-sizing: border-box; }
+* { font-family: 'Open Sans', sans-serif; } /* 300/400/600/700 -> graisse + italique */
+body, html { background-color: #bbb; font-size: 13px; color: #000; }
+
+a { color: #252525; text-decoration: none; transition: all 0.3s linear; -moz-transition: all 0.3s linear; -o-transition: all 0.3s linear; -webkit-transition: all 0.3s linear; }
+a:hover { color: #99885C; }
+
+#wrap { width: 100%; }
+#wrap-container { padding: 25px 25px 0 275px; }
+
+#wrap-container h1 { font-weight: 400; font-size: 30px; border-bottom: dashed 1px #ccc; padding-bottom: 5px; margin-bottom: 25px; }
+
+#wrap-container #barre-outils { margin-bottom: 25px; background-color: #252525; padding: 10px 0; width: 100%; overflow: hidden; }
+#wrap-container #barre-outils #barre-outils-actions { float: right; margin-right: 10px; }
+#wrap-container #barre-outils #barre-outils-actions a { margin-left: 10px; background-color: #99885C; color: #fff; padding: 5px 10px; display: inline-block; }
+#wrap-container #barre-outils #barre-outils-form { float: left; margin-left: 10px; }
+#wrap-container #barre-outils #barre-outils-form a { margin-right: 10px; background-color: #99885C; color: #fff; padding: 5px 10px; display: inline-block; }
+#wrap-container #barre-outils a svg { margin-right: 5px; }
+
+#wrap-container section { width: 100%; background-color: #fff; margin-bottom: 25px; }
+#wrap-container section .section-container { padding: 25px; }
+#wrap-container section .section-container h2 { font-weight: 400; font-size: 20px; border-bottom: dashed 1px #ccc; padding-bottom: 5px; margin-bottom: 25px; }
+
+#wrap-container section .section-container .liste-doc ul li { width: 100%; overflow: hidden; padding: 5px 0; }
+#wrap-container section .section-container .liste-doc ul li:nth-child(even) { background-color: #ddd; }
+#wrap-container section .section-container .liste-doc ul li img { display: block; float: left; margin: 0 25px; }
+#wrap-container section .section-container .liste-doc ul li span { display: block; float: left; padding: 45px 5px 0 5px; }
+#wrap-container section .section-container .liste-doc ul#ul-doc li span { padding: 0 5px; }
+#wrap-container section .section-container .liste-doc ul li span.liste-doc-ordre { font-weight: 600; width: 50px; text-align: center; }
+#wrap-container section .section-container .liste-doc ul li span.liste-doc-delete { float: right; width: 50px; text-align: center; font-size: 25px; }
+
+#wrap-container table { width: 100%; border-collapse: collapse; padding: 0; margin: 0; }
+#wrap-container table tr td, #wrap-container table tr th { padding: 5px 10px; text-align: left; border: solid 1px #ccc; }
+#wrap-container table tr th { text-align: center; font-weight: 600; }
+#wrap-container table tr:nth-child(even) { background-color: #ddd; }
+#wrap-container table .center { text-align: center; }
+#wrap-container table .right { text-align: right; }
+#wrap-container table tr th span { display: inline-block; padding-left: 5px; }
+#wrap-container table tr th span a { display: inline-block; margin: 0 -3px;}
+#wrap-container table tr th span a svg { color: #ccc; }
+#wrap-container table tr th span a.actif svg { color: #99885C; }
+
+#wrap-container #pagination { text-align: center; }
+#wrap-container #pagination a { display: inline-block; padding: 3px 8px; background-color: #252525; color: #fff; margin: 0 5px; }
+#wrap-container #pagination a.actif, #wrap-container #pagination a:hover { background-color: #99885C; }
+
+/* Navigation */
+#navigation { position: fixed; top: 0px; left: 0px; width: 250px; height: 100%; background-color: #252525; color: #fff; }
+#navigation #logo { text-align: center; padding: 25px 0; }
+#navigation #logo img { display: block; margin: 0 auto; }
+#navigation #logo span { display: block; padding-top: 10px; font-size: 25px; font-weight: 300; }
+#navigation #menu ul li.separateur { margin: 10px 0; width: 100%; height: 1px; overflow: hidden; background-color: #fff; }
+#navigation #menu ul li a { display: block; color: #fff; padding: 5px 10px; }
+#navigation #menu ul li a svg { margin-right: 5px; }
+#navigation #menu ul li a:hover, #navigation #menu ul li a.actif { background-color: #99885C; color: #fff; border-right: 10px solid #fff; }
+#navigation #navigation-langues { padding: 10px 0; margin-bottom: 20px; background-color: #3d3d3d; text-align: center; font-weight: 700; }
+
+/* Footer */
+footer { padding: 50px 0 0 275px; text-align: center; color: #555; font-size: 12px; }
+footer#footer-connexion { padding: 50px 0; }
+footer a { color: #555; }
+footer #footer-social { padding: 10px 0; font-size: 20px; }
+
+/* Formulaire */
+form input:focus { outline: 0; }
+form p label { display: block; padding-bottom: 3px; }
+form p span { display: block; width: 100%; overflow: hidden; margin-bottom: 20px; background-color: #efefef; border-bottom: solid 1px #99885C; position: relative; }
+form p span input { border: none; background-color: transparent; padding: 5px 0; width: 100%; }
+form p span textarea { border: none; background-color: transparent; padding: 5px 0; width: 100%; resize: vertical; }
+form p span svg { margin: 0 10px; }
+form p#p-submit { text-align: right; }
+form p#p-submit input { background-color: #252525; color: #fff; border: none; cursor: pointer; padding: 3px 10px; transition: all 0.3s linear; -moz-transition: all 0.3s linear; -o-transition: all 0.3s linear; -webkit-transition: all 0.3s linear; }
+form p#p-submit input:hover { background-color: #99885C; }
+
+#wrap-container form section p span input { display: block; width: 98%; margin: 0 auto; }
+#wrap-container form section p span textarea { display: block; width: 98%; margin: 0 auto; }
+
+form p#p-chps-obligatoires { font-size: 11px; font-weight: 300; font-style: italic; }
+
+form p.p-checkbox-radio input { vertical-align: middle; }
+form p.p-checkbox-radio label { display: inline; }
+
+/* Page de connexion */
+#page-connexion { padding: 50px 0 0 0; }
+#page-connexion h1 { font-size: 25px; font-weight: 300; text-align: center; color: #777; }
+#page-connexion form { width: 550px; padding: 65px 25px 25px 25px; background-color: #fff; margin: 100px auto 0 auto; position: relative; -webkit-box-shadow: 0 0 5px 0 #C9C9C9; box-shadow: 0 0 5px 0 #C9C9C9; }
+#page-connexion form h2 { position: absolute; left: 0px; top: -60px; width: 100%; text-align: center; }
+#page-connexion form p span input { width: 440px; }
+
+/* Loader ordre  */
+#loader-ordre { opacity: 0; visibility: hidden; position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); z-index: 1000; transition: all 0.3s ease-out; -webkit-transition: all 0.3s ease-out; }
+#loader-ordre div { position: absolute; left: 50%; top: 50%; margin: -50px 0 0 -200px; width: 400px; height: 100px; background-color: #fff; text-align: center; line-height: 100px; font-size: 30px; }
+#loader-ordre.show { opacity: 1; visibility: visible; }
+
+/* Logs */
+#page-logs .section-container p { padding: 5px 0; }
+#page-logs .section-container p:nth-child(even) { background-color: #eee; }
+#page-logs .section-container p, #page-logs .section-container p * { font-family: "Courier New"; }
+
+.mce-tinymce { width: calc(100% - 2px) !important; }

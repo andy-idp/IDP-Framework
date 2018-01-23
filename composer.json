@@ -1,0 +1,29 @@
+{
+    "name": "IDP",
+    "authors": [
+        {
+            "name": "ID Parallele",
+            "email": "contact@id-parallele.com",
+            "homepage": "http://www.id-parallele.com",
+            "role": "Developer"            
+        }
+    ],
+    "require": {
+        "keyvanakbary/slugifier": "^3.0",
+        "gumlet/php-image-resize": "1.7.*",
+        "swiftmailer/swiftmailer": "@stable",
+        "twig/twig": "^1.0",
+        "symfony/http-foundation": "3.3.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Core\\": "Core/",
+            "App\\": "App/",
+            "App\\Controller\\": "App/Controller",
+            "App\\Models\\": "App/Models"
+        }
+    },
+    "support": {
+        "email": "andy.durbecq@id-parallele.com"
+    }
+}

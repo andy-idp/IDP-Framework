@@ -1,0 +1,56 @@
+{% extends "layout-manager.twig" %}
+
+{% block body_content %}
+<div id="wrap-container">
+    <div id="page-clients">
+
+        <h1>Managers</h1> 
+
+        <div id="barre-outils">
+            <div id="barre-outils-actions">
+                <a href="{{ WEB_URL }}/manager/managers/ajouter-un-manager?page={{ page }}&amp;tri={{ tri }}&amp;ordre={{ tri_ordre }}"><i class="fa fa-fw fa-user-plus"></i>Ajouter un manager</a>
+            </div>
+        </div>
+
+        <section>
+            <div class="section-container">
+                <h2>Liste de tous les managers &nbsp;({{ managers|length }})</h2>
+
+                <table>
+                    <tbody>
+                        <tr>
+                            <th>ID <span class="tri"><a href="{{ WEB_URL }}/manager/managers?page={{ page }}&amp;tri=id&amp;ordre=desc"{% if tri == 'id' and tri_ordre == 'desc' %} class="actif"{% endif %}><i class="fa fa-fw fa-caret-up"></i></a><a href="{{ WEB_URL }}/manager/managers?page={{ page }}&amp;tri=id&amp;ordre=asc"{% if tri == 'id' and tri_ordre == 'asc' %} class="actif"{% endif %}><i class="fa fa-fw fa-caret-down"></i></a></span></th>
+                            <th>Nom <span class="tri"><a href="{{ WEB_URL }}/manager/managers?page={{ page }}&amp;tri=nom&amp;ordre=desc"{% if tri == 'nom' and tri_ordre == 'desc' %} class="actif"{% endif %}><i class="fa fa-fw fa-caret-up"></i></a><a href="{{ WEB_URL }}/manager/managers?page={{ page }}&amp;tri=nom&amp;ordre=asc"{% if tri == 'nom' and tri_ordre == 'asc' %} class="actif"{% endif %}><i class="fa fa-fw fa-caret-down"></i></a></span></th>
+                            <th>Email <span class="tri"><a href="{{ WEB_URL }}/manager/managers?page={{ page }}&amp;tri=email&amp;ordre=desc"{% if tri == 'email' and tri_ordre == 'desc' %} class="actif"{% endif %}><i class="fa fa-fw fa-caret-up"></i></a><a href="{{ WEB_URL }}/manager/managers?page={{ page }}&amp;tri=email&amp;ordre=asc"{% if tri == 'email' and tri_ordre == 'asc' %} class="actif"{% endif %}><i class="fa fa-fw fa-caret-down"></i></a></span></th>
+                            <th>Actif <span class="tri"><a href="{{ WEB_URL }}/manager/managers?page={{ page }}&amp;tri=statut&amp;ordre=desc"{% if tri == 'statut' and tri_ordre == 'desc' %} class="actif"{% endif %}><i class="fa fa-fw fa-caret-up"></i></a><a href="{{ WEB_URL }}/manager/managers?page={{ page }}&amp;tri=statut&amp;ordre=asc"{% if tri == 'statut' and tri_ordre == 'asc' %} class="actif"{% endif %}><i class="fa fa-fw fa-caret-down"></i></a></span></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        {% for manager_u in managers %}
+                        <tr>
+                            <td class="center">{{ manager_u.id }}</td>    
+                            <td>{{ manager_u.nom }} {{ manager_u.prenom }}</td>    
+                            <td>{{ manager_u.email }}</td>
+                            <td class="center">{% if manager_u.statut %}<i class="fa fa-fw fa-check" style="color: #00c921;"></i>{% else %}<i class="fa fa-fw fa-times" style="color: #ff0000;"></i>{% endif %}</td>
+                            <td class="center"><a href="{{ WEB_URL }}/manager/managers/modifier-un-manager/{{ manager_u.id }}?page={{ page }}&amp;tri={{ tri }}&amp;ordre={{ tri_ordre }}" title="Modifier le manager"><i class="fa fa-fw fa-edit"></i></a></td>
+                            <td class="center"><a href="{{ WEB_URL }}/manager/managers/supprimer-un-manager/{{ manager_u.id }}?page={{ page }}&amp;tri={{ tri }}&amp;ordre={{ tri_ordre }}" title="Supprimer le manager" onclick="return confirm('Voulez-vous vraiment supprimer ce manager ?');"><i class='fa fa-fw fa-trash-alt'></i></a></td>
+                        </tr>   
+                        {% endfor %}                    
+                    </tbody>                       
+                </table>
+            </div>
+        </section>
+
+        <div id="pagination">
+            {% for i in range(debut_pagination, fin_pagination) %}
+                {% if i == page %}
+                    <a href="{{ WEB_URL }}/manager/managers?page={{ i }}&amp;tri={{ tri }}&amp;ordre={{ tri_ordre }}" class="actif">{{ i }}</a>   
+                {% else %}
+                    <a href="{{ WEB_URL }}/manager/managers?page={{ i }}&amp;tri={{ tri }}&amp;ordre={{ tri_ordre }}">{{ i }}</a>   
+                {% endif %}                
+            {% endfor %}          
+        </div>
+
+    </div>
+</div>
+{% endblock %}

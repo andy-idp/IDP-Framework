@@ -1,0 +1,27 @@
+{% extends "layout-manager.twig" %}
+
+{% block body_content %}
+
+<div id="wrap-container">
+    <div id="page-logs">
+
+        <h1>Logs manager</h1> 
+
+        <section>
+            <div class="section-container">
+        
+                {% for log in logs %}
+                    <p>
+                        {% autoescape false %}  
+                            {{ log }}
+                        {% endautoescape %}
+                    </p>
+                {% endfor %}
+                
+            </div>
+        </section>
+
+    </div>
+</div>
+
+{% endblock %}

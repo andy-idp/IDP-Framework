@@ -1,0 +1,16 @@
+Options -Indexes
+
+# Default file
+DirectoryIndex index.php
+
+# Rewrite rules if the module is active
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    #Redirection 301 www
+    #RewriteCond %{HTTP_HOST} !^www.xxx.com$
+    #RewriteRule ^(.*) http://www.xxx.com/$1 [QSA,L,R=301]
+    
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.*)$ index.php [L]
+</IfModule>

@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <title>Ticket</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    </head>
+    <body bgcolor="#ffffff" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" style="-webkit-text-size-adjust:none;">
+        <table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" bgcolor="#ffffff">
+            <tr>
+                <td>
+                    <table width="600" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" align="center">
+                        <tr>
+                            <td width="600">
+                                <table width="600" border="0" cellpadding="0" cellspacing="0" bgcolor="#ffffff">
+                                    <tr>
+                                        <td width="600" height="20" colspan="3"></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="20"></td>
+                                        <td width="560">
+                                            <font color="#000000" face="Arial, Helvetica, sans-serif" size="2" style="font-size: 12px;">
+                                                Nouvelle déclaration d'incident : {{ nom_du_site }}<br/><br/>
+                                                <strong>Nom / Prénom :</strong>{{ prenom }} {{ nom }}<br/>
+                                                <strong>Téléphone :</strong>{{ telephone }}<br/>
+                                                <strong>E-Mail :</strong>{{ email }}<br/>
+                                                <strong>Demande :</strong><br/>{{ demande|raw }}
+                                            </font>
+                                        </td>
+                                        <td width="20"></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="600" height="20" colspan="3"></td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>

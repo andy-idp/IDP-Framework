@@ -1,0 +1,10 @@
+User-agent: *
+
+Disallow: /manager/
+Disallow: /css/
+Disallow: /downloads/
+Disallow: /filemanager/
+Disallow: /fonts/
+Disallow: /images/
+Disallow: /javascript/
+Disallow: /tinymce/

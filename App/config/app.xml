@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<parameters>   
+    <!-- Urls authorized - http://www.xxx.fr,http://... -->
+    <parameter var="url" value="http://idp-framework.localhost,http://192.168.1.50:10084" />    
+    
+    <!-- Name used as default title -->
+    <parameter var="name" value="XXX" />
+    
+    <parameter var="mail_contact" value="andy.durbecq@id-parallele.com" />
+    
+    <!-- BDD -->
+    <parameter var="host_bdd" value="localhost" />
+    <parameter var="user_bdd" value="idparallele" />
+    <parameter var="pass_bdd" value="IDPdev@37ah" />
+    <!-- Leave empty if no bdd -->
+    <parameter var="base_bdd" value="idp-framework" />
+    
+    <parameter var="date_timezone" value="Europe/Paris" />
+    
+    <!-- xx-xxxxx-xx google analytics / If empty no code will be added -->
+    <parameter var="google_analytics" value="" />
+    <parameter var="google_analytics_old" value="" />
+    
+    <!-- List of authorized languages. Ex : fr, en , de, fr_fr ... -->
+    <parameter var="languages" value="fr,en" />
+    
+    <!-- Private key allowing to add a grain of salt los of the use of the method "hashWithToken" of the class "Security" -->
+    <parameter var="hash_key" value="slkd534dlksqkjhckljzDEhDSC" />
+    
+    <!-- Enable cache : 1 / Disable cache : 0 -->
+    <parameter var="cache" value="0" />
+    
+    <!-- Google Recaptcha -->
+    <parameter var="recaptcha_public_key" value="6LcSM-kSAAAAAFVLQlzNQ-xWs2MIzh_6aC6F6fAA" />
+    <parameter var="recaptcha_secret_key" value="6LcSM-kSAAAAAOqmo1-qDCoxl_q-k9XxlWL-zmbE" />
+    
+    <!-- Swift mailer settings -->
+    <parameter var="swift_actif" value="1" />
+    <parameter var="swift_smtp" value="ssl0.ovh.net" />
+    <parameter var="swift_port" value="587" />
+    <parameter var="swift_login" value="ticket@id-parallele.com" />
+    <parameter var="swift_pass" value="54MLs78POS" />
+
+    <parameter var="version" value="1" />
+</parameters>

@@ -1,0 +1,60 @@
+{% extends "layout-manager.twig" %}
+
+{% block body_content %}
+<div id="wrap-container">
+    <div id="page-tableau-de-bord">
+
+        <h1>Tableau de bord</h1>   
+
+        <form action="{{ WEB_URL }}/manager" method="post" autocomplete="off">
+            <section>
+                <div class="section-container">
+                    <h2>Nous contacter - Déclarer un incident</h2>
+
+                    <p>
+                        <label for="nom">Nom</label>
+                        <span>
+                            <input type="text" name="ticket[nom]" tabindex="1" autocomplete="off" id="nom" value="{{ ticket.nom }}"/>
+                        </span>
+                    </p>
+                    <p>
+                        <label for="prenom">Prénom</label>
+                        <span>
+                            <input type="text" name="ticket[prenom]" tabindex="2" autocomplete="off" id="prenom" value="{{ ticket.prenom }}" />
+                        </span>
+                    </p>
+                    <p>
+                        <label for="telephone">Téléphone *</label>
+                        <span>
+                            <input type="text" name="ticket[telephone]" tabindex="3" autocomplete="off" id="telephone" value="{{ ticket.telephone }}" />
+                        </span>
+                    </p>
+                    <p>
+                        <label for="email">E-mail *</label>
+                        <span>
+                            <input type="text" name="ticket[email]" tabindex="4" autocomplete="off" id="email" value="{{ ticket.email }}" />
+                        </span>
+                    </p>
+                    <p>
+                        <label for="demande">Votre demande *</label>
+                        <span>
+                            <textarea id="demande" name="ticket[demande]" tabindex="5" cols="5" rows="5">{{ ticket.demande }}</textarea>
+                        </span>
+                    </p>
+                </div>
+            </section>
+
+            <p id="p-chps-obligatoires">
+                * Champs obligatoires
+            </p>
+
+            <p id="p-submit">
+                <input type="submit" value="Valider" tabindex="6" />
+                <input type="hidden" name="token" value="{{ token }}" />
+            </p> 
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

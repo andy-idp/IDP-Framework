@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<routes>
+    
+    <!-- **************************************** FRONTEND **************************************** -->
+    <route url="/404" controller="Error404" action="index" />  
+    <route url="/" controller="Cms" action="index" />
+    <route url="/(mentions-legales|legale-notice)" controller="Cms" action="mentionsLegales" />
+    
+    <!-- **************************************** MANAGER **************************************** -->      
+    <!-- Connexion -->
+    <route url="/manager/connexion" controller="ManagerApp" action="formConnexion" />
+    <route url="/manager/deconnexion" controller="ManagerApp" action="deconnexion" />
+
+    <!-- Tableau de bord -->
+    <route url="/manager" controller="ManagerApp" action="index" />  
+    <route url="/manager/vider-le-cache" controller="ManagerApp" action="viderLeCache" />
+
+    <!-- Logs manager -->
+    <route url="/manager/logs-manager" controller="ManagerApp" action="logs" />    
+
+    <!-- Manager -->
+    <route url="/manager/managers" controller="ManagerApp" action="managers" />
+    <route url="/manager/managers/ajouter-un-manager" controller="ManagerApp" action="ajouterUnManager" />
+    <route url="/manager/managers/modifier-un-manager/([0-9]*)" controller="ManagerApp" action="modifierUnManager" vars="id_manager" />
+    <route url="/manager/managers/supprimer-un-manager/([0-9]*)" controller="ManagerApp" action="supprimerUnManager" vars="id_manager" />
+
+    <!-- Clients -->
+    <route url="/manager/clients" controller="ManagerApp" action="clients" />
+    <route url="/manager/clients/ajouter-un-client" controller="ManagerApp" action="ajouterUnClient" />
+    <route url="/manager/clients/modifier-un-client/([0-9]*)" controller="ManagerApp" action="modifierUnClient" vars="id_internaute" />
+    <route url="/manager/clients/supprimer-un-client/([0-9]*)" controller="ManagerApp" action="supprimerUnClient" vars="id_internaute" />
+  
+    <!-- posts -->
+    <route url="/manager/posts-(actualite)" controller="ManagerApp" action="posts" vars="type" />    
+    <route url="/manager/posts-(actualite)/ajouter-un-post" controller="ManagerApp" action="ajouterUnPost" vars="type" />
+    <route url="/manager/posts-(actualite)/modifier-un-post/([0-9]*)" controller="ManagerApp" action="modifierUnPost" vars="type,id_post" />
+    <route url="/manager/posts-(actualite)/supprimer-un-post/([0-9]*)" controller="ManagerApp" action="supprimerUnPost" vars="type,id_post" />
+    <route url="/manager/posts-(actualite)/supprimer-un-post-image/([0-9]*)/([0-9]*)" controller="ManagerApp" action="supprimerUnPostImage" vars="type,id_post,id_post_image" />
+    <route url="/manager/posts-(actualite)/supprimer-un-post-document/([0-9]*)/([0-9]*)" controller="ManManagerAppager" action="supprimerUnPostDocument" vars="type,id_post,id_post_document" />
+    <route url="/manager/posts-(actualite)/dupliquer-un-post/([0-9]*)" controller="ManagerApp" action="dupliquerPost" vars="type,id_post" />
+    <route url="/manager/posts/ordre-image" controller="ManagerApp" action="ordrePostImage" />        
+  
+</routes>

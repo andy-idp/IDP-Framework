@@ -1,0 +1,16 @@
+{% extends "layout.twig" %}
+
+{% block meta_title %}404 Not Found | {{ parent() }}{% endblock %}
+
+{% block body_content %}
+    <div id="page-404">
+
+        <h1>Erreur 404 !</h1>
+
+        <p>
+            La page que vous avez demandée n'existe pas ou n'est plus disponible.<br /><br />
+            <a href="{{ WEB_URL }}">Retour à l'accueil</a>
+        </p>
+
+    </div>
+{% endblock %}
