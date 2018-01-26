@@ -119,8 +119,8 @@ class Config
     public function __construct(Request $request)
     {
         $xml = new \DOMDocument;
-        if (is_file(__DIR__ . '/../app/config/app.xml')) {
-            $xml->load(__DIR__ . '/../app/config/app.xml');
+        if (is_file(__DIR__ . '/../App/config/app.xml')) {
+            $xml->load(__DIR__ . '/../App/config/app.xml');
         } else {
             trigger_error("Error loading app.xml!", E_USER_ERROR);
             exit();

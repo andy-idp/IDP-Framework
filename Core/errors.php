@@ -23,7 +23,7 @@ function errorfatal()
 
 function customException($e)
 {
-    if (get_class($e) != "core\PException") {
+    if (get_class($e) != "Core\PException") {
         $e = new \Core\PException("|" . strtoupper(get_class($e)) . "| " . $e->getMessage(), 0, E_USER_ERROR, $e->getFile(), $e->getLine());
     }
 

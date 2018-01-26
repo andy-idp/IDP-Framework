@@ -150,10 +150,10 @@ class Application
 
         // Twig
         $this->twig_loader = new \Twig_Loader_Filesystem([
-            __DIR__ . "/../app/templates",
-            __DIR__ . "/../app/templates/frontend",
-            __DIR__ . "/../app/templates/mails",
-            __DIR__ . "/../app/templates/manager",
+            __DIR__ . "/../App/templates",
+            __DIR__ . "/../App/templates/frontend",
+            __DIR__ . "/../App/templates/mails",
+            __DIR__ . "/../App/templates/manager",
         ]);
         $this->twig = new \Twig_Environment($this->twig_loader, array(
             'cache' => ($this->config->cache) ? __DIR__ . "/../cache" : false
@@ -206,8 +206,8 @@ class Application
             }
         }
 
-        if (is_file(__DIR__ . "/../app/translations/" . $this->language . ".php")) {
-            require_once(__DIR__ . "/../app/translations/" . $this->language . ".php");
+        if (is_file(__DIR__ . "/../App/translations/" . $this->language . ".php")) {
+            require_once(__DIR__ . "/../App/translations/" . $this->language . ".php");
         }
     }
 
@@ -363,8 +363,8 @@ class Application
     public function launch()
     {
         $xml = new \DOMDocument;
-        if (is_file(__DIR__ . '/../app/config/routes.xml')) {
-            $xml->load(__DIR__ . '/../app/config/routes.xml');
+        if (is_file(__DIR__ . '/../App/config/routes.xml')) {
+            $xml->load(__DIR__ . '/../App/config/routes.xml');
         } else {
             trigger_error("Error loading routes.xml!", E_USER_ERROR);
             exit();
