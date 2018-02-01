@@ -25,7 +25,7 @@ class Application
      * @var array $translation
      * @access private
      */
-    private $translation;
+    private $translation = array();
 
     /**
      * @var Twig_Loader_Filesystem $twig_loader
@@ -206,9 +206,11 @@ class Application
             }
         }
 
-        if (is_file(__DIR__ . "/../App/translations/" . $this->language . ".php")) {
-            require_once(__DIR__ . "/../App/translations/" . $this->language . ".php");
-        }
+        foreach ($this->config->languages as $language) {
+            if (is_file(__DIR__ . "/../App/translations/" . $language . ".php")) {
+                require_once(__DIR__ . "/../App/translations/" . $language . ".php");
+            }   
+        }        
     }
 
     /**
@@ -217,10 +219,13 @@ class Application
      * @param string $texte_a_traduire
      * @return string
      */
-    public function __($cle_texte_a_traduire)
+    public function __($cle_texte_a_traduire, $language = "")
     {
-        if (!empty($this->translation[$cle_texte_a_traduire])) {
-            return $this->translation[$cle_texte_a_traduire];
+        if (empty($language)) {
+            $language = $this->language;
+        }
+        if (!empty($this->translation[$language][$cle_texte_a_traduire])) {
+            return $this->translation[$language][$cle_texte_a_traduire];
         } else {
             return $cle_texte_a_traduire;
         }

@@ -10,3 +10,5 @@
 [01-02-2018 14:15:17 192.168.1.94] Warning [2] : "unlink(C:\wamp2-5\www\idp_framework\App\Controller/../../web/downloads/posts/1517416153-billoute-150-20.jpg): No such file or directory" - C:\wamp2-5\www\idp_framework\App\Controller\ManagerApp.php à la ligne 1172
 [01-02-2018 14:15:17 192.168.1.94] Warning [2] : "unlink(C:\wamp2-5\www\idp_framework\App\Controller/../../web/downloads/posts/thumb-1517416153-billoute-150-20.jpg): No such file or directory" - C:\wamp2-5\www\idp_framework\App\Controller\ManagerApp.php à la ligne 1173
 [01-02-2018 14:15:17 192.168.1.94] Warning [2] : "unlink(C:\wamp2-5\www\idp_framework\App\Controller/../../web/downloads/posts/crop-1517416153-billoute-150-20.jpg): No such file or directory" - C:\wamp2-5\www\idp_framework\App\Controller\ManagerApp.php à la ligne 1174
+[01-02-2018 15:45:03 192.168.1.94] Fatal error [256] : "Please set a default language in the application configuration file!" - C:\wamp2-5\www\idp_framework\Core\Application.php à la ligne 204
+[01-02-2018 15:55:19 192.168.1.94] Fatal error [4] : "syntax error, unexpected 'if' (T_IF), expecting ',' or ';'" - C:\wamp2-5\www\idp_framework\Core\Application.php à la ligne 225

@@ -63,12 +63,14 @@
                             <input type="text" name="titre" tabindex="2" autocomplete="off" id="titre" value="{{ post.titre }}" />
                         </span>
                     </p>
+                    {% if type == 'actualite' %}
                     <p>
                         <label for="auteur">Auteur</label>
                         <span>
                             <input type="text" name="auteur" autocomplete="off" id="auteur" value="{{ options['auteur']}}" />
                         </span>
                     </p>
+                    {% endif %}     
                     <p>
                         <label for="sous-titre">Sous titre</label>
                         <span>

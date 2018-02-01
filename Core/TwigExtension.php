@@ -17,13 +17,13 @@ class TwigExtension extends \Twig_Extension {
         );
     }
 
-    public function translate($context, $value) {
-        $langue_actuelle = $context['CURRENT_LANGUAGE'];
+    public function translate($context, $value, $language = "") {
+        if (empty($language)) {
+            $language = $context['CURRENT_LANGUAGE'];
+        }        
 
-        if (!empty($langue_actuelle)) {
-            if (!empty($context['TRANSLATION'][$value])) {
-                $value = $context['TRANSLATION'][$value];
-            }
+        if (!empty($context['TRANSLATION'][$language][$value])) {
+            $value = $context['TRANSLATION'][$language][$value];
         }
 
         return $value;

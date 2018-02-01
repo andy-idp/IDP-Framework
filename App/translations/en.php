@@ -1,5 +1,5 @@
 <?php
-$this->translation = array(
+$this->translation['en'] = array(
     // Cookies
     "cookie_notice" => "By continuing your browsing on this site, you agree to the use of cookies to enhance your experience.",
     "cookie_notice_close" => "Close",
