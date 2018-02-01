@@ -117,3 +117,7 @@ form p.p-checkbox-radio label { display: inline; }
 #page-logs .section-container p, #page-logs .section-container p * { font-family: "Courier New"; }
 
 .mce-tinymce { width: calc(100% - 2px) !important; }
+
+/* Upload file image input */
+.image-crop-apercu-zone { width: 50%; margin: 0 auto; }
+.image-crop-apercu-zone img { display: block; max-width: 100%; }

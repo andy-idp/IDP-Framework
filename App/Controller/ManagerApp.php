@@ -954,12 +954,21 @@ class ManagerApp extends Controller
 
             if ($action == "add_image") {                
                 if ($request->files->get('fichier')) {
-                    if ($request->files->get('fichier')->getMimeType() == "image/jpeg") {
+                    if ($request->files->get('fichier')->getMimeType() == "image/jpeg" || $request->files->get('fichier')->getMimeType() == "image/png") {
                         if ($request->files->get('fichier')->getClientSize() < self::MAX_UPLOAD) {
-                            $fichier = slugifier\slugify(str_replace(array('.jpg', '.JPG', '.jpeg', '.JPEG'), array("", "", "", ""), $request->files->get('fichier')->getClientOriginalName())) . "-" . rand(1, 100) . ".jpg";
+                            if ($request->files->get('fichier')->getMimeType() == "image/jpeg")
+                                $fichier = slugifier\slugify(str_replace(array('.jpg', '.JPG', '.jpeg', '.JPEG'), array("", "", "", ""), $request->files->get('fichier')->getClientOriginalName())) . "-" . rand(1, 100) . ".jpg";
+                            else
+                                $fichier = slugifier\slugify(str_replace(array('.png', '.PNG'), array("", ""), $request->files->get('fichier')->getClientOriginalName())) . "-" . rand(1, 100) . ".png";
                             $request->files->get('fichier')->move(__DIR__ . '/../../web/downloads/posts/', $fichier);
                             $fichier_resize = new \Gumlet\ImageResize(__DIR__ . "/../../web/downloads/posts/" . $fichier);
                             $fichier_resize->crop(110, 110)->save(__DIR__ . "/../../web/downloads/posts/thumb-" . $fichier);
+
+                            if (!empty($request->request->get('fichier_fw')) && !empty($request->request->get('fichier_fh')) && !empty($request->request->get('fichier_w')) && !empty($request->request->get('fichier_h'))) {
+                                $fichier_resize->freecrop($request->request->get('fichier_w'), $request->request->get('fichier_h'), $request->request->get('fichier_x'), $request->request->get('fichier_y'))->save(__DIR__ . "/../../web/downloads/posts/crop-" . $fichier);
+                                $fichier_resize_final = new \Gumlet\ImageResize(__DIR__ . "/../../web/downloads/posts/crop-" . $fichier);                                
+                                $fichier_resize_final->resize($request->request->get('fichier_fw'), $request->request->get('fichier_fh'))->save(__DIR__ . "/../../web/downloads/posts/crop-" . $fichier);
+                            }
 
                             $post_image = new Post_image(array(
                                 "id_post" => $post->id,
@@ -977,7 +986,7 @@ class ManagerApp extends Controller
                             $session->getFlashBag()->add('error', 'L\'image ne doît dépasser 4Mo !'); 
                         } 
                     } else {
-                        $session->getFlashBag()->add('error', 'L\'image doit être au format "jpg/jpeg" !'); 
+                        $session->getFlashBag()->add('error', 'L\'image doit être au format "jpg/jpeg" ou "png" !'); 
                     }
                 } else {
                     $session->getFlashBag()->add('error', 'Merci de renseigner une image !'); 
@@ -1092,6 +1101,7 @@ class ManagerApp extends Controller
 
         unlink(__DIR__ . "/../../web/downloads/posts/" . $image->fichier);
         unlink(__DIR__ . "/../../web/downloads/posts/thumb-" . $image->fichier);
+        unlink(__DIR__ . "/../../web/downloads/posts/crop-" . $image->fichier);
 
         $session->getFlashBag()->add('report', 'Image supprimée.'); 
 
@@ -1161,6 +1171,7 @@ class ManagerApp extends Controller
             foreach ($images as $image) {
                 unlink(__DIR__ . "/../../web/downloads/posts/" . $image->fichier);
                 unlink(__DIR__ . "/../../web/downloads/posts/thumb-" . $image->fichier);
+                unlink(__DIR__ . "/../../web/downloads/posts/crop-" . $image->fichier);
             }
         }
 
@@ -1209,7 +1220,7 @@ class ManagerApp extends Controller
         if ($documents) {
             foreach ($documents as $document) {
                 $fichier = time() . "-" . $document->fichier;
-                copy(__DIR__ . "/../../../web/downloads/posts/" . $document->fichier, __DIR__ . "/../../../web/downloads/posts/" . $fichier);
+                copy(__DIR__ . "/../../web/downloads/posts/" . $document->fichier, __DIR__ . "/../../web/downloads/posts/" . $fichier);
                 $document->fichier = $fichier;
                 $document->id_post = $post->id;
                 $this->post_repository->insertDocument($document);
@@ -1218,8 +1229,9 @@ class ManagerApp extends Controller
         if($images) {
             foreach ($images as $image) {
                 $fichier = time() . "-" . $image->fichier;
-                copy(__DIR__ . "/../../../web/downloads/posts/" . $image->fichier, __DIR__ . "/../../../web/downloads/posts/" . $fichier);
-                copy(__DIR__ . "/../../../web/downloads/posts/thumb-" . $image->fichier, __DIR__ . "/../../../web/downloads/posts/thumb-" . $fichier);
+                copy(__DIR__ . "/../../web/downloads/posts/" . $image->fichier, __DIR__ . "/../../web/downloads/posts/" . $fichier);
+                copy(__DIR__ . "/../../web/downloads/posts/thumb-" . $image->fichier, __DIR__ . "/../../web/downloads/posts/thumb-" . $fichier);
+                copy(__DIR__ . "/../../web/downloads/posts/crop-" . $image->fichier, __DIR__ . "/../../web/downloads/posts/crop-" . $fichier);
                 $image->fichier = $fichier;
                 $image->id_post = $post->id;
                 $this->post_repository->insertImage($image);

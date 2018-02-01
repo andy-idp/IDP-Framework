@@ -1,7 +1,12 @@
 {% extends "layout-manager.twig" %}
 
+{% block css_files %}
+<link rel="stylesheet" href="{{ WEB_DIR_URL }}/css/cropper.min.css" />
+{% endblock %}
+
 {% block javascript_files %}
     <script type="text/javascript" src="{{ WEB_DIR_URL }}/javascript/html.sortable.js"></script>
+    <script type="text/javascript" src="{{ WEB_DIR_URL }}/javascript/cropper.min.js"></script>
 {% endblock %}
 
 {% block body_content %}
@@ -120,11 +125,19 @@
                     <h2>Images</h2>
 
                     <p>
-                        <label for="fichier">Image (jpg et 4Mo maximum)</label>
+                        <label for="fichier">Image (4Mo maximum)</label>
                         <span>
-                            <input type="file" name="fichier" id="fichier" />
+                            <input type="file" name="fichier" id="fichier" class="upload-file-image-input" data-width="40" data-height="40" />
+                            <input type="hidden" name="fichier_x" class="upload-file-image-input-x" value="0" />
+                            <input type="hidden" name="fichier_y" class="upload-file-image-input-y" value="0" />
+                            <input type="hidden" name="fichier_w" class="upload-file-image-input-w" value="0" />
+                            <input type="hidden" name="fichier_h" class="upload-file-image-input-h" value="0" />
+                            <input type="hidden" name="fichier_fw" class="upload-file-image-input-fw" value="40" />
+                            <input type="hidden" name="fichier_fh" class="upload-file-image-input-fh" value="40" />
                         </span>
                     </p>
+                    <div class="image-crop-apercu-zone"></div>
+
                     <p>
                         <label for="legende">Légende</label>
                         <span>
@@ -140,17 +153,15 @@
                     <i>Pour modifier l'ordre des visuels, un simple glisser déposer suffit !<br /><br /></i>
 
                     <div class="liste-doc">
-                        {% if post_images %}
-                            <ul class="sortable">
-                            {% for post_image in post_images %}
-                                <li data-id="{{ post_image.id }}">
-                                    <img src="{{ WEB_DIR_URL }}/downloads/posts/thumb-{{ post_image.fichier }}" alt="" />
-                                    <span>{{ post_image.legende }}</span>
-                                    <span class="liste-doc-delete"><a href="{{ WEB_URL }}/manager/posts-{{ type }}/supprimer-un-post-image/{{ post.id }}/{{ post_image.id }}?page={{ page }}&amp;tri={{ tri }}&amp;ordre={{ tri_ordre }}" title="Supprimer l'image" onclick="return confirm('Supprimer cette image ?');"><i class="fa fa-fw fa-trash-alt"></i></a></span>
-                                </li>
-                            {% endfor %}
-                            </ul>
-                        {% endif %}                                    
+                        <ul class="sortable">
+                        {% for post_image in post_images %}
+                            <li data-id="{{ post_image.id }}">
+                                <img src="{{ WEB_DIR_URL }}/downloads/posts/thumb-{{ post_image.fichier }}" alt="" />
+                                <span>{{ post_image.legende }}</span>
+                                <span class="liste-doc-delete"><a href="{{ WEB_URL }}/manager/posts-{{ type }}/supprimer-un-post-image/{{ post.id }}/{{ post_image.id }}?page={{ page }}&amp;tri={{ tri }}&amp;ordre={{ tri_ordre }}" title="Supprimer l'image" onclick="return confirm('Supprimer cette image ?');"><i class="fa fa-fw fa-trash-alt"></i></a></span>
+                            </li>
+                        {% endfor %}
+                        </ul>                                
                     </div>
                 </div>
             </section>            

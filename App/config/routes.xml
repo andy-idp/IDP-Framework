@@ -39,5 +39,6 @@
     <route url="/manager/posts-(actualite)/supprimer-un-post-document/([0-9]*)/([0-9]*)" controller="ManManagerAppager" action="supprimerUnPostDocument" vars="type,id_post,id_post_document" />
     <route url="/manager/posts-(actualite)/dupliquer-un-post/([0-9]*)" controller="ManagerApp" action="dupliquerPost" vars="type,id_post" />
     <route url="/manager/posts/ordre-image" controller="ManagerApp" action="ordrePostImage" />        
+    <route url="/manager/posts/dropzone-save" controller="ManagerApp" action="dropzoneSave" />     
   
 </routes>
