@@ -3,9 +3,9 @@
 
     <head>
 
-        <meta charset="utf-8" />
-        <meta name="robots" content="noindex,follow" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui" />
+        <meta charset="utf-8">
+        <meta name="robots" content="noindex,follow">
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
         <!--[if IE]>
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <![endif]-->
@@ -13,15 +13,15 @@
         <title>Manager</title> 
 
         <!-- Add to homescreen for Chrome on Android -->
-        <meta name="mobile-web-app-capable" content="yes" />       
+        <meta name="mobile-web-app-capable" content="yes">       
 
         <!-- Generic Icon -->
-        <link rel="shortcut icon" href="{{ WEB_DIR_URL }}/images/favicon.ico" />
+        <link rel="shortcut icon" href="{{ WEB_DIR_URL }}/images/favicon.ico">
 
         <!-- Css -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,300italic,400italic,600italic' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="{{ WEB_DIR_URL }}/css/manager.css" />
+        <link rel="stylesheet" href="{{ WEB_DIR_URL }}/css/manager.css">
         {% block css_files %}{% endblock %}
 
     </head>
@@ -100,10 +100,10 @@
 
         <!-- Js -->                
         {% block javascript_files %}{% endblock %}  
-        <script type="text/javascript" src="{{ WEB_DIR_URL }}/javascript/idp_module.min.js"></script> 
+        <script src="{{ WEB_DIR_URL }}/javascript/idp_module.min.js"></script> 
         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script> 
         <script src="https://npmcdn.com/flatpickr/dist/l10n/fr.js"></script>
-        <script type="text/javascript" src="{{ WEB_DIR_URL }}/javascript/manager.js"></script>    
-        <script type="text/javascript" defer src="{{ WEB_DIR_URL }}/javascript/fontawesome-all.min.js"></script>  
+        <script src="{{ WEB_DIR_URL }}/javascript/manager.js"></script>    
+        <script defer src="{{ WEB_DIR_URL }}/javascript/fontawesome-all.min.js"></script>  
     </body>
 </html>

@@ -1,1 +1,1 @@
-# IDP-Framework
+# IDP Framework

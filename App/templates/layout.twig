@@ -14,29 +14,29 @@
             </script>
         {% endif %}
 
-        <meta charset="utf-8" />
+        <meta charset="utf-8">
         <title>{% block meta_title %}{{ TITLE|title }}{% endblock %}</title> 
 
-        <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui" />
-        <meta name="description" content="{% block meta_description %}{% endblock %}" />       
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+        <meta name="description" content="{% block meta_description %}{% endblock %}">       
         
         <!-- Add to homescreen for Chrome on Android -->
-        <meta name="mobile-web-app-capable" content="yes" />       
+        <meta name="mobile-web-app-capable" content="yes">       
 
         <!--[if IE]>
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <![endif]-->
         
-        <meta property="og:title" content="{{ block('meta_title') }}" />
-        <meta property="og:description" content="{{ block('meta_description') }}" />
-        <meta property="og:type" content="website" />        
+        <meta property="og:title" content="{{ block('meta_title') }}">
+        <meta property="og:description" content="{{ block('meta_description') }}">
+        <meta property="og:type" content="website">        
 
         <!-- Generic Icon -->
-        <link rel="shortcut icon" href="{{ WEB_DIR_URL }}/images/favicon.ico" />
+        <link rel="shortcut icon" href="{{ WEB_DIR_URL }}/images/favicon.ico">
 
         <!-- Css -->
         {% block css_files %}
-            <link rel="stylesheet" href="{{ WEB_DIR_URL }}/css/style.css?v={{ VERSION }}" media="all" />
+            <link rel="stylesheet" href="{{ WEB_DIR_URL }}/css/style.css?v={{ VERSION }}" media="all">
         {% endblock %}
 
     </head>
@@ -89,9 +89,9 @@
 
         <!-- Js -->        
         {% block javascript_files %}
-            <script type="text/javascript" src="{{ WEB_DIR_URL }}/javascript/idp_module.js?v={{ VERSION }}"></script>  
-            <script type="text/javascript" src="{{ WEB_DIR_URL }}/javascript/main.js?v={{ VERSION }}"></script> 
-            <script type="text/javascript" defer src="{{ WEB_DIR_URL }}/javascript/fontawesome-all.min.js"></script>  
+            <script src="{{ WEB_DIR_URL }}/javascript/idp_module.js?v={{ VERSION }}"></script>  
+            <script src="{{ WEB_DIR_URL }}/javascript/main.js?v={{ VERSION }}"></script> 
+            <script defer src="{{ WEB_DIR_URL }}/javascript/fontawesome-all.min.js"></script>  
         {% endblock %}                          
 
     </body>
