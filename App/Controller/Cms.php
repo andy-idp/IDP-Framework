@@ -15,7 +15,7 @@ class Cms extends Controller
     public function indexAction()
     {
         $session = $this->application->getSession();    
-        $session->getFlashBag()->add('report', 'Yeah !');           
+        $session->getFlashBag()->add('report', 'Test !');           
 
         $messages_top = $this->application->getMessageTop();       
         
