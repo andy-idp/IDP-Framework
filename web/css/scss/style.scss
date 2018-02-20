@@ -1,0 +1,40 @@
+@import 'variables';
+
+/* Reset */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary,
+time, mark, audio, video { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; }
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block; } 
+
+/* Cookies*/
+#cookie-notice { 
+    display: none; position: fixed; z-index: 200; bottom: 0px; left: 0px; width: 100%; background-color: $cookie-bg-color; color: $cookie-txt-color; font-size: 0.8em; text-align: center; 
+    #cookie-notice-container { 
+        padding: 20px; display: flex; justify-content: space-between; 
+        span { 
+            display: block; 
+            a { display: inline-block; text-decoration: underline; color: $cookie-txt-color; }
+            svg { margin-right: 5px; }
+        }
+    }
+}
+
+/* Message error/report */
+#message-top { 
+    position: fixed; width: 50%; top: -50px; left: 50%; z-index: 200; text-align: center; transform: translateX(-50%); -webkit-transform: translateX(-50%); visibility: hidden; opacity: 0; transition: all 0.3s ease-out; -webkit-transition: all 0.3s ease-out; 
+    div { 
+        display: block; padding: 20px; background-color: $message-top-bg-color; font-size: 16px; 
+        &.report { color: $message-top-report-color; border: solid 2px $message-top-report-color; }
+        &.error { color: $message-top-error-color; border: solid 2px $message-top-error-color; }
+    } 
+    &.show { visibility: visible; opacity: 1; top: -2px; }   
+}
+
+/* Global */
+html { font-size: 100%; }
+html, body { height: 100%; }
+body { line-height: 1; font-size: 1em; font-family: $master-family; font-weight: $master-family-weight; color: $master-txt-color; background-color: $master-bg-color; }
+
+*, :after, :before { box-sizing: border-box; }

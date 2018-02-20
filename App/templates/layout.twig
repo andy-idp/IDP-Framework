@@ -36,8 +36,11 @@
 
         <!-- Css -->
         {% block css_files %}
-            <link rel="stylesheet" href="{{ WEB_DIR_URL }}/css/style.css?v={{ VERSION }}" media="all">
+            <link rel="stylesheet" href="{{ WEB_DIR_URL }}/css/style.min.css?v={{ VERSION }}" media="all">
         {% endblock %}
+
+        <!--Manifest for PWA -->
+        <!--<link rel="manifest" href="/manifest.json">-->
 
     </head>
 

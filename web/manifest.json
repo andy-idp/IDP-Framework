@@ -1,0 +1,27 @@
+{
+  "name": "ID Parallele",
+  "short_name": "IDP",
+  "icons": [{
+    "src": "https://www.id-parallele.com/images/idp-72.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    }, {
+      "src": "https://www.id-parallele.com/images/idp-96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    }, {
+      "src": "https://www.id-parallele.com/images/idp-144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    }, {
+      "src": "https://www.id-parallele.com/images/idp-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }],
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#99885c",
+  "lang": "fr",
+  "orientation": "portrait"
+}
