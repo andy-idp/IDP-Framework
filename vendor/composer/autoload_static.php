@@ -22,6 +22,10 @@ class ComposerStaticInit8e824ee851e2526572f1eee8f2132d13
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Component\\HttpFoundation\\' => 33,
         ),
+        'G' => 
+        array (
+            'Gumlet\\' => 7,
+        ),
         'C' => 
         array (
             'Core\\' => 5,
@@ -46,6 +50,10 @@ class ComposerStaticInit8e824ee851e2526572f1eee8f2132d13
         'Symfony\\Component\\HttpFoundation\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/http-foundation',
+        ),
+        'Gumlet\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/gumlet/php-image-resize/lib',
         ),
         'Core\\' => 
         array (
@@ -75,18 +83,12 @@ class ComposerStaticInit8e824ee851e2526572f1eee8f2132d13
         ),
     );
 
-    public static $classMap = array (
-        'Gumlet\\ImageResize' => __DIR__ . '/..' . '/gumlet/php-image-resize/lib/ImageResize.php',
-        'Gumlet\\ImageResizeException' => __DIR__ . '/..' . '/gumlet/php-image-resize/lib/ImageResize.php',
-    );
-
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit8e824ee851e2526572f1eee8f2132d13::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit8e824ee851e2526572f1eee8f2132d13::$prefixDirsPsr4;
             $loader->prefixesPsr0 = ComposerStaticInit8e824ee851e2526572f1eee8f2132d13::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit8e824ee851e2526572f1eee8f2132d13::$classMap;
 
         }, null, ClassLoader::class);
     }

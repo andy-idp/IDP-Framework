@@ -10,7 +10,7 @@
     ],
     "require": {
         "keyvanakbary/slugifier": "^3.0",
-        "gumlet/php-image-resize": "1.7.*",
+        "gumlet/php-image-resize": "1.8.*",
         "swiftmailer/swiftmailer": "@stable",
         "twig/twig": "^1.0",
         "symfony/http-foundation": "3.3.*"

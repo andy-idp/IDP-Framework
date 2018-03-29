@@ -9,6 +9,7 @@ return array(
     'Twig\\' => array($vendorDir . '/twig/twig/src'),
     'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
     'Symfony\\Component\\HttpFoundation\\' => array($vendorDir . '/symfony/http-foundation'),
+    'Gumlet\\' => array($vendorDir . '/gumlet/php-image-resize/lib'),
     'Core\\' => array($baseDir . '/Core'),
     'App\\Models\\' => array($baseDir . '/App/Models'),
     'App\\Controller\\' => array($baseDir . '/App/Controller'),
